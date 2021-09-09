@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import './question.dart';
+import './answer.dart';
+import './buttons.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,61 +44,9 @@ class MyAppState extends State {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(25),
-                child: Text(
-                  jokes[jokeIndex]["question"] as String,
-                  style: TextStyle(
-                    fontSize: 27.5,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(15, 5, 15, 45),
-                child: Text(
-                  jokes[jokeIndex]["answer"] as String,
-                  style: TextStyle(
-                    fontSize: 22.5,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin:EdgeInsets.fromLTRB(15, 0, 15, 0),
-                    child: FloatingActionButton(
-                      onPressed: (){
-                        changeJokeIndex("next");
-                        print("called");
-                      },
-                      child: Icon(
-                        Icons.arrow_left_rounded,
-                        size: 60,
-                      ),
-                      backgroundColor: Colors.orange,
-                    ),
-                  ),
-                  Container(
-                    margin:EdgeInsets.fromLTRB(15, 0, 15, 0),
-                    child: FloatingActionButton(
-                      onPressed: (){
-                        changeJokeIndex("prev");
-                        print("called");
-                      },
-                      child: Icon(
-                        Icons.arrow_right_rounded,
-                        size: 60,
-                      ),
-                      backgroundColor: Colors.orange,
-                    ),
-                  ),
-                ],
-              ),
+              Question(question: jokes[jokeIndex]["question"] as String,),
+              Answer(answer: jokes[jokeIndex]["answer"] as String),
+              Buttons(changeJokeIndex: changeJokeIndex),
             ],
           ),
         ),
